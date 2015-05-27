@@ -1,59 +1,61 @@
 <!DOCTYPE html>
 <html>
-
   <head>
-    <meta charset='utf-8' />
-    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
-    <meta name="description" content="Node-restful : A library for quickly providing a data api" />
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
 
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
 
-    <title>Node-restful</title>
+    <title>Node-restful by clayreimann</title>
   </head>
 
   <body>
+    <header>
+      <div class="inner">
+        <h1>Node-restful</h1>
+        <h2>A library for quickly providing a data api</h2>
+        <a href="https://github.com/clayreimann/node-restful" class="button"><small>View project on</small> GitHub</a>
+      </div>
+    </header>
 
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/baugarten/node-restful">View on GitHub</a>
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <p><a href="http://travis-ci.org/baugarten/node-restful"><img src="https://secure.travis-ci.org/baugarten/node-restful.png?branch=master" alt="build status"></a></p>
 
-          <h1 id="project_title">Node-restful</h1>
-          <h2 id="project_tagline">A library for quickly providing a data api</h2>
-
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/baugarten/node-restful/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/baugarten/node-restful/tarball/master">Download this project as a tar.gz file</a>
-            </section>
-        </header>
-    </div>
-
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <p><a href="http://travis-ci.org/baugarten/node-restful"><img src="https://secure.travis-ci.org/baugarten/node-restful.png?branch=master" alt="build status"></a></p>
-
-<h1>node-restful</h1>
+<h1>
+<a id="node-restful" class="anchor" href="#node-restful" aria-hidden="true"><span class="octicon octicon-link"></span></a>node-restful</h1>
 
 <p>Create awesome APIs using express.</p>
 
 <p>Register mongoose resources and default RESTful routes are automatically made</p>
 
-<div class="highlight"><pre><span class="kd">var</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'express'</span><span class="p">),</span>
-    <span class="nx">restful</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'node-restful'</span><span class="p">),</span>
-    <span class="nx">mongoose</span> <span class="o">=</span> <span class="nx">restful</span><span class="p">.</span><span class="nx">mongoose</span><span class="p">;</span>
-<span class="kd">var</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">express</span><span class="p">();</span>
+<div class="highlight highlight-js"><pre><span class="pl-k">var</span> express <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>express<span class="pl-pds">'</span></span>),
+    restful <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>node-restful<span class="pl-pds">'</span></span>),
+    mongoose <span class="pl-k">=</span> restful.mongoose;
+<span class="pl-k">var</span> app <span class="pl-k">=</span> express();
 
-<span class="kd">var</span> <span class="nx">Resource</span> <span class="o">=</span> <span class="nx">restful</span><span class="p">.</span><span class="nx">model</span><span class="p">(</span><span class="s1">'resource'</span><span class="p">,</span> <span class="nx">mongoose</span><span class="p">.</span><span class="nx">Schema</span><span class="p">({</span>
-    <span class="nx">title</span><span class="o">:</span> <span class="s1">'string'</span><span class="p">,</span>
-    <span class="nx">year</span><span class="o">:</span> <span class="s1">'number'</span><span class="p">,</span>
-  <span class="p">})</span>
-  <span class="p">.</span><span class="nx">methods</span><span class="p">([</span><span class="s1">'get'</span><span class="p">,</span> <span class="s1">'post'</span><span class="p">,</span> <span class="s1">'put'</span><span class="p">,</span> <span class="s1">'delete'</span><span class="p">]);</span>
+app.use(express.bodyParser());
+app.use(express.query());
 
-<span class="nx">Resource</span><span class="p">.</span><span class="nx">register</span><span class="p">(</span><span class="nx">app</span><span class="p">,</span> <span class="s1">'/resources'</span><span class="p">);</span>
+mongoose.connect(<span class="pl-s"><span class="pl-pds">"</span>mongodb://localhost/resources<span class="pl-pds">"</span></span>);
 
-<span class="nx">app</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="mi">3000</span><span class="p">);</span>
-</pre></div>
+<span class="pl-k">var</span> Resource <span class="pl-k">=</span> app.resource <span class="pl-k">=</span> restful.model(<span class="pl-s"><span class="pl-pds">'</span>resource<span class="pl-pds">'</span></span>, mongoose.Schema({
+    title<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>string<span class="pl-pds">'</span></span>,
+    year<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>number<span class="pl-pds">'</span></span>,
+  }))
+  .methods([<span class="pl-s"><span class="pl-pds">'</span>get<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>post<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>put<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>delete<span class="pl-pds">'</span></span>]);
+
+Resource.register(app, <span class="pl-s"><span class="pl-pds">'</span>/resources<span class="pl-pds">'</span></span>);
+
+app.listen(<span class="pl-c1">3000</span>);</pre></div>
 
 <p>Registers the following routes:</p>
 
@@ -68,89 +70,235 @@ DELETE /resources/:id
 
 <p>The best part is that <code>restful.model</code> returns a Mongoose model, so you can interact with it the same way that you're already accustomed to! (i.e. <code>new Resource</code>, <code>Resource.findById</code>, etc.)</p>
 
-<h2>Install</h2>
+<h2>
+<a id="support" class="anchor" href="#support" aria-hidden="true"><span class="octicon octicon-link"></span></a>Support</h2>
+
+<p>This library is currently supported through complaint driven development, so if you see something, have a feature request, open an issue and if it seems to jive with the mission of the library, I'll prioritize it.</p>
+
+<h2>
+<a id="install" class="anchor" href="#install" aria-hidden="true"><span class="octicon octicon-link"></span></a>Install</h2>
 
 <pre><code>npm install node-restful
 </code></pre>
 
-<h2>Usage</h2>
+<h2>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h2>
 
 <p>There is a good example application under examples/movies.</p>
 
 <p>I will also show some features and use cases for them, how to set up routes, etc.</p>
 
-<h3>API</h3>
+<h3>
+<a id="api" class="anchor" href="#api" aria-hidden="true"><span class="octicon octicon-link"></span></a>API</h3>
 
 <p>There are a few functions that are available after we register the mongoose schema. The first one we already saw. </p>
 
 <p><code>.methods([...])</code> takes a list of methods that should be available on the resource. Future calls to methods will override previously set values
 To disallow <code>delete</code> operations, simply run</p>
 
-<div class="highlight"><pre><span class="nx">Resource</span><span class="p">.</span><span class="nx">methods</span><span class="p">([</span><span class="s1">'get'</span><span class="p">,</span> <span class="s1">'post'</span><span class="p">,</span> <span class="s1">'put'</span><span class="p">])</span>
-</pre></div>
+<div class="highlight highlight-js"><pre>Resource.methods([<span class="pl-s"><span class="pl-pds">'</span>get<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>post<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>put<span class="pl-pds">'</span></span>])</pre></div>
 
 <p>We can also run custom routes. We can add custom routes by calling <code>.route(path, handler)</code></p>
 
-<div class="highlight"><pre><span class="nx">Resource</span><span class="p">.</span><span class="nx">route</span><span class="p">(</span><span class="s1">'recommend'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s1">'I have a recommendation for you!'</span><span class="p">);</span>
-<span class="p">});</span>
-</pre></div>
+<div class="highlight highlight-js"><pre>Resource.route(<span class="pl-s"><span class="pl-pds">'</span>recommend<span class="pl-pds">'</span></span>, <span class="pl-k">function</span>(<span class="pl-smi">req</span>, <span class="pl-smi">res</span>, <span class="pl-smi">next</span>) {
+  res.<span class="pl-c1">send</span>(<span class="pl-s"><span class="pl-pds">'</span>I have a recommendation for you!<span class="pl-pds">'</span></span>);
+});</pre></div>
 
 <p>This will set up a route at <code>/resources/recommend</code>, which will be called on all HTTP methods. We can also restrict the HTTP method by adding it to the path:</p>
 
-<div class="highlight"><pre><span class="nx">Resource</span><span class="p">.</span><span class="nx">route</span><span class="p">(</span><span class="s1">'recommend.get'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="p">{</span>
-   <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s1">'GET a recommendation'</span><span class="p">);</span>
-<span class="p">});</span>
-<span class="nx">Resource</span><span class="p">.</span><span class="nx">route</span><span class="p">(</span><span class="s1">'recommend'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'get'</span><span class="p">,</span> <span class="s1">'put'</span><span class="p">,</span> <span class="s1">'delete'</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="p">{</span> <span class="p">...</span> <span class="p">});</span>
-</pre></div>
+<div class="highlight highlight-js"><pre>Resource.route(<span class="pl-s"><span class="pl-pds">'</span>recommend.get<span class="pl-pds">'</span></span>, <span class="pl-k">function</span>(<span class="pl-smi">req</span>, <span class="pl-smi">res</span>, <span class="pl-smi">next</span>) {
+   res.<span class="pl-c1">send</span>(<span class="pl-s"><span class="pl-pds">'</span>GET a recommendation<span class="pl-pds">'</span></span>);
+});
+Resource.route(<span class="pl-s"><span class="pl-pds">'</span>recommend<span class="pl-pds">'</span></span>, [<span class="pl-s"><span class="pl-pds">'</span>get<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>put<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>delete<span class="pl-pds">'</span></span>], <span class="pl-k">function</span>(<span class="pl-smi">req</span>, <span class="pl-smi">res</span>, <span class="pl-smi">next</span>) { ... });</pre></div>
 
 <p>Or do some combination of HTTP methods.</p>
 
 <p>Now. Lets say we have to run arbitrary code before or after a route. Lets say we need to hash a password before a POST or PUT operation. Well, easy.</p>
 
-<div class="highlight"><pre><span class="nx">Resource</span><span class="p">.</span><span class="nx">before</span><span class="p">(</span><span class="s1">'post'</span><span class="p">,</span> <span class="nx">hash_password</span><span class="p">)</span>
-  <span class="p">.</span><span class="nx">before</span><span class="p">(</span><span class="s1">'put'</span><span class="p">,</span> <span class="nx">hash_password</span><span class="p">);</span>
+<div class="highlight highlight-js"><pre>Resource.before(<span class="pl-s"><span class="pl-pds">'</span>post<span class="pl-pds">'</span></span>, hash_password)
+  .before(<span class="pl-s"><span class="pl-pds">'</span>put<span class="pl-pds">'</span></span>, hash_password);
 
-<span class="kd">function</span> <span class="nx">hash_password</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">password</span> <span class="o">=</span> <span class="nx">hash</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">password</span><span class="p">);</span>
-  <span class="nx">next</span><span class="p">();</span>
-<span class="p">}</span>
-</pre></div>
+<span class="pl-k">function</span> <span class="pl-en">hash_password</span>(<span class="pl-smi">req</span>, <span class="pl-smi">res</span>, <span class="pl-smi">next</span>) {
+  req.<span class="pl-c1">body</span>.password <span class="pl-k">=</span> hash(req.<span class="pl-c1">body</span>.password);
+  next();
+}</pre></div>
 
 <p>Boy. That was easy. What about doing stuff after request, but before its sent back to the user? Restful stores the bundle of data to be returned in <code>res.locals</code> (see <a href="http://expressjs.com/api.html#res.locals">express docs</a>). <code>res.locals.status_code</code> is the returned status code and <code>res.locals.bundle</code> is the bundle of data. In every before and after call, you are free to modify these are you see fit!</p>
 
-<div class="highlight"><pre><span class="nx">Resource</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="s1">'get'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">tmp</span> <span class="o">=</span> <span class="nx">res</span><span class="p">.</span><span class="nx">locals</span><span class="p">.</span><span class="nx">bundle</span><span class="p">.</span><span class="nx">title</span><span class="p">;</span> <span class="c1">// Lets swap the title and year fields because we're funny!</span>
-  <span class="nx">res</span><span class="p">.</span><span class="nx">locals</span><span class="p">.</span><span class="nx">bundle</span><span class="p">.</span><span class="nx">title</span> <span class="o">=</span> <span class="nx">res</span><span class="p">.</span><span class="nx">locals</span><span class="p">.</span><span class="nx">bundle</span><span class="p">.</span><span class="nx">year</span><span class="p">;</span>
-  <span class="nx">res</span><span class="p">.</span><span class="nx">locals</span><span class="p">.</span><span class="nx">bundle</span><span class="p">.</span><span class="nx">year</span> <span class="o">=</span> <span class="nx">tmp</span><span class="p">;</span>
-  <span class="nx">next</span><span class="p">();</span> <span class="c1">// Don't forget to call next!</span>
-<span class="p">});</span>
+<div class="highlight highlight-js"><pre>Resource.after(<span class="pl-s"><span class="pl-pds">'</span>get<span class="pl-pds">'</span></span>, <span class="pl-k">function</span>(<span class="pl-smi">req</span>, <span class="pl-smi">res</span>, <span class="pl-smi">next</span>) {
+  <span class="pl-k">var</span> tmp <span class="pl-k">=</span> res.locals.bundle.<span class="pl-c1">title</span>; <span class="pl-c">// Lets swap the title and year fields because we're funny!</span>
+  res.locals.bundle.<span class="pl-c1">title</span> <span class="pl-k">=</span> res.locals.bundle.year;
+  res.locals.bundle.year <span class="pl-k">=</span> tmp;
+  next(); <span class="pl-c">// Don't forget to call next!</span>
+});
 
-<span class="nx">Resource</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="s1">'recommend'</span><span class="p">,</span> <span class="nx">do_something</span><span class="p">);</span> <span class="c1">// Runs after all HTTP verbs</span>
-</pre></div>
+Resource.after(<span class="pl-s"><span class="pl-pds">'</span>recommend<span class="pl-pds">'</span></span>, do_something); <span class="pl-c">// Runs after all HTTP verbs</span></pre></div>
 
 <p>Now, this is all great. But up until now we've really only talked about defining list routes, those at <code>/resources/route_name</code>. We can also define detail routes. Those look like this</p>
 
-<div class="highlight"><pre><span class="nx">Resource</span><span class="p">.</span><span class="nx">route</span><span class="p">(</span><span class="s1">'moreinfo'</span><span class="p">,</span> <span class="p">{</span>
-    <span class="nx">detail</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-    <span class="nx">handler</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="p">{</span>
-        <span class="c1">// req.params.id holds the resource's id</span>
-        <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s2">"I'm at /resources/:id/moreinfo!"</span><span class="p">)</span>
-    <span class="p">}</span>
-<span class="p">});</span>
-</pre></div>
+<div class="highlight highlight-js"><pre>Resource.route(<span class="pl-s"><span class="pl-pds">'</span>moreinfo<span class="pl-pds">'</span></span>, {
+    detail<span class="pl-k">:</span> <span class="pl-c1">true</span>,
+    <span class="pl-en">handler</span>: <span class="pl-k">function</span>(<span class="pl-smi">req</span>, <span class="pl-smi">res</span>, <span class="pl-smi">next</span>) {
+        <span class="pl-c">// req.params.id holds the resource's id</span>
+        res.<span class="pl-c1">send</span>(<span class="pl-s"><span class="pl-pds">"</span>I'm at /resources/:id/moreinfo!<span class="pl-pds">"</span></span>)
+    }
+});</pre></div>
 
 <p>I don't think this is the prettiest, and I'd be open to suggestions on how to beautify detail route definition...</p>
 
 <p>And that's everything for now!</p>
 
-<h2>Contributing</h2>
+<h3>
+<a id="built-in-filters" class="anchor" href="#built-in-filters" aria-hidden="true"><span class="octicon octicon-link"></span></a>Built-in Filters</h3>
+
+<p>Node-restful accepts many options to manipulate the list results. These options can be added to your request either via the querystring or the POST body. They are passed into the mongoose query to filter your resultset.</p>
+
+<h4>
+<a id="selecting-the-entity-properties-you-need" class="anchor" href="#selecting-the-entity-properties-you-need" aria-hidden="true"><span class="octicon octicon-link"></span></a>Selecting the entity-properties you need</h4>
+
+<p>If you only need a few properties instead of the entire model, you can ask the service to only give just the properties you need:</p>
+
+<p>A <code>GET</code> request to <code>/users/?select=name%20email</code> will result in:</p>
+
+<div class="highlight highlight-json"><pre>[
+    {
+        <span class="pl-s"><span class="pl-pds">"</span>_id<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>543adb9c7a0f149e3ac29438<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>name<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>user1<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>email<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>user1@test.com<span class="pl-pds">"</span></span>
+    },
+    {
+        <span class="pl-s"><span class="pl-pds">"</span>_id<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>543adb9c7a0f149e3ac2943b<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>name<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>user2<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>email<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>user2@test.com<span class="pl-pds">"</span></span>
+    }
+]</pre></div>
+
+<h4>
+<a id="limiting-the-number-and-skipping-items" class="anchor" href="#limiting-the-number-and-skipping-items" aria-hidden="true"><span class="octicon octicon-link"></span></a>Limiting the number and skipping items</h4>
+
+<p>When implementing pagination you might want to use <code>skip</code> and <code>limit</code> filters. Both do exactly what their name says and just skip given amount of items or limit to a set amount of items.</p>
+
+<p><code>/users/?limit=5</code> will give you the first 5 items<br>
+<code>/users/?skip=5</code> will skip the first 5 and give you the rest<br>
+<code>/users/?limit=5&amp;skip=5</code> will skip the first 5 and then give you the second 5</p>
+
+<h4>
+<a id="sorting-the-result" class="anchor" href="#sorting-the-result" aria-hidden="true"><span class="octicon octicon-link"></span></a>Sorting the result</h4>
+
+<p>Getting a sorted list is as easy as adding a <code>sort</code> querystring parameter with the property you want to sort on. <code>/users/?sort=name</code> will give you a list sorted on the name property, with an ascending sort order.</p>
+
+<p>Changing the sort order uses the same rules as the string notation of <a href="http://mongoosejs.com/docs/api.html#query_Query-sort">mongoose's sort filter</a>. <code>/users/?sort=-name</code> will return the same list as before with a descending sort order.</p>
+
+<h4>
+<a id="filtering-the-results" class="anchor" href="#filtering-the-results" aria-hidden="true"><span class="octicon octicon-link"></span></a>Filtering the results</h4>
+
+<p>Sometimes you just want to get all people older than 18, or you are want to get all people living in a certain city. Then you would want to 
+use filters for that. You can ask the service for equality, or values greater or less than, give it an array of values it should match to, or even a regex.</p>
+
+<table>
+<thead>
+<tr>
+<th>Filter</th>
+<th>Query</th>
+<th>Example</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>equal</strong></td>
+<td><code>equals</code></td>
+<td>
+<code>/users?gender=male</code> or <code>/users?gender__equals=male</code>
+</td>
+<td>both return all male users</td>
+</tr>
+<tr>
+<td><strong>not equal</strong></td>
+<td><code>ne</code></td>
+<td><code>/users?gender__ne=male</code></td>
+<td>returns all users who are not male (<code>female</code> and <code>x</code>)</td>
+</tr>
+<tr>
+<td><strong>greater than</strong></td>
+<td><code>gt</code></td>
+<td><code>/users?age__gt=18</code></td>
+<td>returns all users older than 18</td>
+</tr>
+<tr>
+<td><strong>greater than or equal to</strong></td>
+<td><code>gte</code></td>
+<td><code>/users?age__gte=18</code></td>
+<td>returns all users 18 and older (age should be a number property)</td>
+</tr>
+<tr>
+<td><strong>less than</strong></td>
+<td><code>lt</code></td>
+<td><code>/users?age__lt=30</code></td>
+<td>returns all users age 29 and younger</td>
+</tr>
+<tr>
+<td><strong>less than or equal to</strong></td>
+<td><code>lte</code></td>
+<td><code>/users?age__lte=30</code></td>
+<td>returns all users age 30 and younger</td>
+</tr>
+<tr>
+<td><strong>in</strong></td>
+<td><code>in</code></td>
+<td><code>/users?gender__in=female,male</code></td>
+<td>returns all female and male users</td>
+</tr>
+<tr>
+<td><strong>Regex</strong></td>
+<td><code>regex</code></td>
+<td><code>/users?username__regex=/^baugarten/i</code></td>
+<td>returns all users with a username starting with baugarten</td>
+</tr>
+</tbody>
+</table>
+
+<h3>
+<a id="populating-a-sub-entity" class="anchor" href="#populating-a-sub-entity" aria-hidden="true"><span class="octicon octicon-link"></span></a>Populating a sub-entity</h3>
+
+<p>When you have setup a mongoose Schema with properties referencing other entities, you can ask the service to populate them for you.</p>
+
+<p>A <code>GET</code> request to <code>/users/542edff9fffc55dd29d99346</code> will result in:</p>
+
+<div class="highlight highlight-json"><pre>{
+    <span class="pl-s"><span class="pl-pds">"</span>_id<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>542edff9fffc55dd29d99346<span class="pl-pds">"</span></span>,
+    <span class="pl-s"><span class="pl-pds">"</span>name<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>the employee<span class="pl-pds">"</span></span>,
+    <span class="pl-s"><span class="pl-pds">"</span>email<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>employee@company.com<span class="pl-pds">"</span></span>,
+    <span class="pl-s"><span class="pl-pds">"</span>boss<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>542edff9fffc55dd29d99343<span class="pl-pds">"</span></span>,
+    <span class="pl-s"><span class="pl-pds">"</span>__v<span class="pl-pds">"</span></span>: <span class="pl-c1">0</span>
+}</pre></div>
+
+<p>A <code>GET</code> request to <code>/users/542edff9fffc55dd29d99346?populate=boss</code> will result in:</p>
+
+<div class="highlight highlight-json"><pre>{
+    <span class="pl-s"><span class="pl-pds">"</span>_id<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>542edff9fffc55dd29d99346<span class="pl-pds">"</span></span>,
+    <span class="pl-s"><span class="pl-pds">"</span>name<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>the employee<span class="pl-pds">"</span></span>,
+    <span class="pl-s"><span class="pl-pds">"</span>email<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>employee@company.com<span class="pl-pds">"</span></span>,
+    <span class="pl-s"><span class="pl-pds">"</span>boss<span class="pl-pds">"</span></span>: {
+        <span class="pl-s"><span class="pl-pds">"</span>_id<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>542edff9fffc55dd29d99343<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>name<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>the boss<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>email<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>boss@company.com<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>__v<span class="pl-pds">"</span></span>: <span class="pl-c1">0</span>
+    },
+    <span class="pl-s"><span class="pl-pds">"</span>__v<span class="pl-pds">"</span></span>: <span class="pl-c1">0</span>
+}</pre></div>
+
+<hr>
+
+<h2>
+<a id="contributing" class="anchor" href="#contributing" aria-hidden="true"><span class="octicon octicon-link"></span></a>Contributing</h2>
 
 <p>You can view the issue list for what I'm working on, or contact me to help!</p>
 
 <p>Just reach out to <a href="https://github.com/baugarten">me</a></p>
 
-<h2>MIT License</h2>
+<h2>
+<a id="mit-license" class="anchor" href="#mit-license" aria-hidden="true"><span class="octicon octicon-link"></span></a>MIT License</h2>
 
 <p>Copyright (c) 2012 by Ben Augarten</p>
 
@@ -171,18 +319,26 @@ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
   THE SOFTWARE.</p>
-      </section>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/clayreimann/node-restful/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/clayreimann/node-restful/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/clayreimann/node-restful"></a> is maintained by <a href="https://github.com/clayreimann">clayreimann</a>.</p>
+
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
     </div>
 
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">Node-restful maintained by <a href="https://github.com/baugarten">baugarten</a></p>
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
-      </footer>
-    </div>
-
-              <script type="text/javascript">
+            <script type="text/javascript">
             var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
             document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
           </script>
@@ -192,7 +348,6 @@ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
             pageTracker._trackPageview();
             } catch(err) {}
           </script>
-
 
   </body>
 </html>
